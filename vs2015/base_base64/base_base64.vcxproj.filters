@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup>
+        <Filter Include="base_base64">
+            <UniqueIdentifier>{FC35D4A6-491C-0E34-2BC4-6F2834DFECE3}</UniqueIdentifier>
+        </Filter>
+    </ItemGroup>
+    <ItemGroup>
+        <ClCompile Include="..\..\base_base64\base64.cpp">
+            <Filter>base_base64</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\base_base64\test.cpp">
+            <Filter>base_base64</Filter>
+        </ClCompile>
+    </ItemGroup>
+    <ItemGroup>
+    </ItemGroup>
+</Project>
