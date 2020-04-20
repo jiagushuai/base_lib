@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup Label="ProjectConfigurations">
+        <ProjectConfiguration Include="debug|Win32">
+            <Configuration>debug</Configuration>
+            <Platform>Win32</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="debug|x64">
+            <Configuration>debug</Configuration>
+            <Platform>x64</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="release|Win32">
+            <Configuration>release</Configuration>
+            <Platform>Win32</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="release|x64">
+            <Configuration>release</Configuration>
+            <Platform>x64</Platform>
+        </ProjectConfiguration>
+    </ItemGroup>
+    <PropertyGroup Label="Globals">
+        <ProjectGuid>{DBAC1405-B384-42B3-D5EF-88676446E572}</ProjectGuid>
+        <RootNamespace>base_openssl</RootNamespace>
+        <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    </PropertyGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="Configuration">
+        <ConfigurationType>DynamicLibrary</ConfigurationType>
+        <PlatformToolset>v140</PlatformToolset>
+        <CharacterSet>MultiByte</CharacterSet>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Configuration">
+        <ConfigurationType>DynamicLibrary</ConfigurationType>
+        <PlatformToolset>v140</PlatformToolset>
+        <CharacterSet>MultiByte</CharacterSet>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'" Label="Configuration">
+        <ConfigurationType>DynamicLibrary</ConfigurationType>
+        <PlatformToolset>v140</PlatformToolset>
+        <CharacterSet>MultiByte</CharacterSet>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Configuration">
+        <ConfigurationType>DynamicLibrary</ConfigurationType>
+        <PlatformToolset>v140</PlatformToolset>
+        <CharacterSet>MultiByte</CharacterSet>
+    </PropertyGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+    <ImportGroup Label="ExtensionSettings">
+    </ImportGroup>
+    <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="PropertySheets">
+        <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    </ImportGroup>
+    <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="PropertySheets">
+        <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    </ImportGroup>
+    <ImportGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'" Label="PropertySheets">
+        <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    </ImportGroup>
+    <ImportGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="PropertySheets">
+        <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    </ImportGroup>
+    <PropertyGroup Label="UserMacros" />
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
+        <OutDir>..\..\build\windows\x86\debug\</OutDir>
+        <IntDir>..\..\build\.objs\base_openssl\windows\x86\debug\</IntDir>
+        <TargetName>base_openssl</TargetName>
+        <TargetExt>.dll</TargetExt>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+        <OutDir>..\..\build\windows\x64\debug\</OutDir>
+        <IntDir>..\..\build\.objs\base_openssl\windows\x64\debug\</IntDir>
+        <TargetName>base_openssl</TargetName>
+        <TargetExt>.dll</TargetExt>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
+        <OutDir>..\..\build\windows\x86\release\</OutDir>
+        <IntDir>..\..\build\.objs\base_openssl\windows\x86\release\</IntDir>
+        <TargetName>base_openssl</TargetName>
+        <TargetExt>.dll</TargetExt>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+        <OutDir>..\..\build\windows\x64\release\</OutDir>
+        <IntDir>..\..\build\.objs\base_openssl\windows\x64\release\</IntDir>
+        <TargetName>base_openssl</TargetName>
+        <TargetExt>.dll</TargetExt>
+    </PropertyGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
+        <Link>
+            <AdditionalOptions>/libpath:..\\..\\lib\\windows /libpath:..\\..\\lib\\windows\\lib_x86 libssl.lib libcrypto.lib ws2_32.lib GDI32.lib ADVAPI32.lib CRYPT32.lib USER32.lib -nologo %(AdditionalOptions)</AdditionalOptions>
+            <GenerateDebugInformation>true</GenerateDebugInformation>
+            <TargetMachine>MachineX86</TargetMachine>
+        </Link>
+        <ClCompile>
+            <Optimization>Disabled</Optimization>
+            <WarningLevel>TurnOffAllWarnings</WarningLevel>
+            <PreprocessorDefinitions>_USING_V110_SDK71_;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+            <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+            <AdditionalIncludeDirectories>..\..\include;..\..\base_base64;..\..\base_transcode;..\..\base_log</AdditionalIncludeDirectories>
+            <AdditionalOptions>-FS /EHa -nologo %(AdditionalOptions)</AdditionalOptions>
+        </ClCompile>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+        <Link>
+            <AdditionalOptions>/libpath:..\\..\\lib\\windows /libpath:..\\..\\lib\\windows\\lib_x64 libssl.lib libcrypto.lib ws2_32.lib GDI32.lib ADVAPI32.lib CRYPT32.lib USER32.lib -nologo %(AdditionalOptions)</AdditionalOptions>
+            <GenerateDebugInformation>true</GenerateDebugInformation>
+            <TargetMachine>MachineX64</TargetMachine>
+        </Link>
+        <ClCompile>
+            <Optimization>Disabled</Optimization>
+            <WarningLevel>TurnOffAllWarnings</WarningLevel>
+            <PreprocessorDefinitions>_USING_V110_SDK71_;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+            <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+            <AdditionalIncludeDirectories>..\..\include;..\..\base_base64;..\..\base_transcode;..\..\base_log</AdditionalIncludeDirectories>
+            <AdditionalOptions>-FS /EHa -nologo %(AdditionalOptions)</AdditionalOptions>
+        </ClCompile>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
+        <Link>
+            <AdditionalOptions>/libpath:..\\..\\lib\\windows /libpath:..\\..\\lib\\windows\\lib_x86 libssl.lib libcrypto.lib ws2_32.lib GDI32.lib ADVAPI32.lib CRYPT32.lib USER32.lib -nologo %(AdditionalOptions)</AdditionalOptions>
+            <GenerateDebugInformation>false</GenerateDebugInformation>
+            <TargetMachine>MachineX86</TargetMachine>
+        </Link>
+        <ClCompile>
+            <Optimization>Full</Optimization>
+            <FloatingPointModel>Fast</FloatingPointModel>
+            <WarningLevel>TurnOffAllWarnings</WarningLevel>
+            <PreprocessorDefinitions>_USING_V110_SDK71_;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <DebugInformationFormat>None</DebugInformationFormat>
+            <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+            <AdditionalIncludeDirectories>..\..\include;..\..\base_base64;..\..\base_transcode;..\..\base_log</AdditionalIncludeDirectories>
+            <AdditionalOptions>/EHa -nologo %(AdditionalOptions)</AdditionalOptions>
+        </ClCompile>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+        <Link>
+            <AdditionalOptions>/libpath:..\\..\\lib\\windows /libpath:..\\..\\lib\\windows\\lib_x64 libssl.lib libcrypto.lib ws2_32.lib GDI32.lib ADVAPI32.lib CRYPT32.lib USER32.lib -nologo %(AdditionalOptions)</AdditionalOptions>
+            <GenerateDebugInformation>false</GenerateDebugInformation>
+            <TargetMachine>MachineX64</TargetMachine>
+        </Link>
+        <ClCompile>
+            <Optimization>Full</Optimization>
+            <FloatingPointModel>Fast</FloatingPointModel>
+            <WarningLevel>TurnOffAllWarnings</WarningLevel>
+            <PreprocessorDefinitions>_USING_V110_SDK71_;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <DebugInformationFormat>None</DebugInformationFormat>
+            <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+            <AdditionalIncludeDirectories>..\..\include;..\..\base_base64;..\..\base_transcode;..\..\base_log</AdditionalIncludeDirectories>
+            <AdditionalOptions>/EHa -nologo %(AdditionalOptions)</AdditionalOptions>
+        </ClCompile>
+    </ItemDefinitionGroup>
+    <ItemGroup>
+        <ClCompile Include="..\..\base_base64\base64.cpp">
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\base_base64\base64.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\base_base64\base64.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\base_base64\base64.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\base_base64\base64.cpp.obj</ObjectFileName>
+        </ClCompile>
+        <ClCompile Include="..\..\base_log\zf_file_output.cpp">
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\base_log\zf_file_output.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\base_log\zf_file_output.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\base_log\zf_file_output.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\base_log\zf_file_output.cpp.obj</ObjectFileName>
+        </ClCompile>
+        <ClCompile Include="..\..\base_log\zf_log.cpp">
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\base_log\zf_log.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\base_log\zf_log.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\base_log\zf_log.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\base_log\zf_log.cpp.obj</ObjectFileName>
+        </ClCompile>
+        <ClCompile Include="..\..\src\interface.cpp">
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\src\interface.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\src\interface.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\src\interface.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\src\interface.cpp.obj</ObjectFileName>
+        </ClCompile>
+        <ClCompile Include="..\..\src\rsaLib.cpp">
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\src\rsaLib.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\src\rsaLib.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\src\rsaLib.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\src\rsaLib.cpp.obj</ObjectFileName>
+        </ClCompile>
+        <ClCompile Include="..\..\base_transcode\strnormalize.cpp">
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\base_transcode\strnormalize.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\base_transcode\strnormalize.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\base_transcode\strnormalize.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\base_transcode\strnormalize.cpp.obj</ObjectFileName>
+        </ClCompile>
+    </ItemGroup>
+    <ItemGroup>
+    </ItemGroup>
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+    <ImportGroup Label="ExtensionTargets">
+    </ImportGroup>
+</Project>

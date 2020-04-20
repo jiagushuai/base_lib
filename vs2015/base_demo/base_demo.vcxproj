@@ -26,22 +26,22 @@
     <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="Configuration">
         <ConfigurationType>Application</ConfigurationType>
-        <PlatformToolset>v140</PlatformToolset>
+        <PlatformToolset>v140_xp</PlatformToolset>
         <CharacterSet>MultiByte</CharacterSet>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Configuration">
         <ConfigurationType>Application</ConfigurationType>
-        <PlatformToolset>v140</PlatformToolset>
+        <PlatformToolset>v140_xp</PlatformToolset>
         <CharacterSet>MultiByte</CharacterSet>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'" Label="Configuration">
         <ConfigurationType>Application</ConfigurationType>
-        <PlatformToolset>v140</PlatformToolset>
+        <PlatformToolset>v140_xp</PlatformToolset>
         <CharacterSet>MultiByte</CharacterSet>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Configuration">
         <ConfigurationType>Application</ConfigurationType>
-        <PlatformToolset>v140</PlatformToolset>
+        <PlatformToolset>v140_xp</PlatformToolset>
         <CharacterSet>MultiByte</CharacterSet>
     </PropertyGroup>
     <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -90,7 +90,7 @@
     </PropertyGroup>
     <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
         <Link>
-            <AdditionalOptions>/libpath:..\\..\\build\\windows\\x86\\debug base.lib -nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
+            <AdditionalOptions>/libpath:..\\..\\build\\windows\\x86\\debug /libpath:..\\..\\lib\\windows /libpath:..\\..\\lib\\windows\\lib_x86 base_openssl.lib libssl.lib libcrypto.lib ws2_32.lib GDI32.lib ADVAPI32.lib CRYPT32.lib USER32.lib /SUBSYSTEM:CONSOLE,5.01 /MANIFEST "/MANIFESTUAC:level='requireAdministrator' uiAccess='false'" -nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
             <GenerateDebugInformation>true</GenerateDebugInformation>
             <SubSystem>Console</SubSystem>
             <TargetMachine>MachineX86</TargetMachine>
@@ -98,14 +98,16 @@
         <ClCompile>
             <Optimization>Disabled</Optimization>
             <WarningLevel>TurnOffAllWarnings</WarningLevel>
-            <PreprocessorDefinitions>__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <PreprocessorDefinitions>_USING_V110_SDK71_;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-            <AdditionalOptions>-FS -nologo %(AdditionalOptions)</AdditionalOptions>
+            <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+            <AdditionalIncludeDirectories>..\..\include</AdditionalIncludeDirectories>
+            <AdditionalOptions>-FS /EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
     <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
         <Link>
-            <AdditionalOptions>/libpath:..\\..\\build\\windows\\x64\\debug base.lib -nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
+            <AdditionalOptions>/libpath:..\\..\\build\\windows\\x64\\debug /libpath:..\\..\\lib\\windows /libpath:..\\..\\lib\\windows\\lib_x64 base_openssl.lib libssl.lib libcrypto.lib ws2_32.lib GDI32.lib ADVAPI32.lib CRYPT32.lib USER32.lib /SUBSYSTEM:CONSOLE,5.01 /MANIFEST "/MANIFESTUAC:level='requireAdministrator' uiAccess='false'" -nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
             <GenerateDebugInformation>true</GenerateDebugInformation>
             <SubSystem>Console</SubSystem>
             <TargetMachine>MachineX64</TargetMachine>
@@ -113,14 +115,16 @@
         <ClCompile>
             <Optimization>Disabled</Optimization>
             <WarningLevel>TurnOffAllWarnings</WarningLevel>
-            <PreprocessorDefinitions>__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <PreprocessorDefinitions>_USING_V110_SDK71_;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-            <AdditionalOptions>-FS -nologo %(AdditionalOptions)</AdditionalOptions>
+            <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+            <AdditionalIncludeDirectories>..\..\include</AdditionalIncludeDirectories>
+            <AdditionalOptions>-FS /EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
     <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
         <Link>
-            <AdditionalOptions>/libpath:..\\..\\build\\windows\\x86\\release base.lib -nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
+            <AdditionalOptions>/libpath:..\\..\\build\\windows\\x86\\release /libpath:..\\..\\lib\\windows /libpath:..\\..\\lib\\windows\\lib_x86 base_openssl.lib libssl.lib libcrypto.lib ws2_32.lib GDI32.lib ADVAPI32.lib CRYPT32.lib USER32.lib /SUBSYSTEM:CONSOLE,5.01 /MANIFEST "/MANIFESTUAC:level='requireAdministrator' uiAccess='false'" -nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
             <GenerateDebugInformation>false</GenerateDebugInformation>
             <SubSystem>Console</SubSystem>
             <TargetMachine>MachineX86</TargetMachine>
@@ -129,14 +133,16 @@
             <Optimization>Full</Optimization>
             <FloatingPointModel>Fast</FloatingPointModel>
             <WarningLevel>TurnOffAllWarnings</WarningLevel>
-            <PreprocessorDefinitions>__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <PreprocessorDefinitions>_USING_V110_SDK71_;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>None</DebugInformationFormat>
-            <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
+            <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+            <AdditionalIncludeDirectories>..\..\include</AdditionalIncludeDirectories>
+            <AdditionalOptions>/EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
     <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
         <Link>
-            <AdditionalOptions>/libpath:..\\..\\build\\windows\\x64\\release base.lib -nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
+            <AdditionalOptions>/libpath:..\\..\\build\\windows\\x64\\release /libpath:..\\..\\lib\\windows /libpath:..\\..\\lib\\windows\\lib_x64 base_openssl.lib libssl.lib libcrypto.lib ws2_32.lib GDI32.lib ADVAPI32.lib CRYPT32.lib USER32.lib /SUBSYSTEM:CONSOLE,5.01 /MANIFEST "/MANIFESTUAC:level='requireAdministrator' uiAccess='false'" -nologo -dynamicbase -nxcompat %(AdditionalOptions)</AdditionalOptions>
             <GenerateDebugInformation>false</GenerateDebugInformation>
             <SubSystem>Console</SubSystem>
             <TargetMachine>MachineX64</TargetMachine>
@@ -145,9 +151,11 @@
             <Optimization>Full</Optimization>
             <FloatingPointModel>Fast</FloatingPointModel>
             <WarningLevel>TurnOffAllWarnings</WarningLevel>
-            <PreprocessorDefinitions>__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <PreprocessorDefinitions>_USING_V110_SDK71_;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>None</DebugInformationFormat>
-            <AdditionalOptions>-nologo %(AdditionalOptions)</AdditionalOptions>
+            <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+            <AdditionalIncludeDirectories>..\..\include</AdditionalIncludeDirectories>
+            <AdditionalOptions>/EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
     <ItemGroup>
