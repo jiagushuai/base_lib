@@ -11,3 +11,8 @@ int add(int a, int b)
 	printf("csr\t%s\n", c_csr);
     return a + b;
 }
+
+int genRsaCsr(const char * DN, char * csr, int *csrLen)
+{
+	return rsa.genRsaCsr(DN, csr, csrLen);
+}

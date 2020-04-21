@@ -25,6 +25,10 @@ int rsaLib::genRsaCsr(const char * DN, char * csr,int *csrLen)
 	{
 		return -1;
 	}
+	if (csr == NULL || csrLen ==NULL)
+	{
+		return -1;
+	}
 	if (!(pX509DN = X509_NAME_new()))
 	{
 		return -1;
@@ -80,7 +84,6 @@ int rsaLib::genRsaCsr(const char * DN, char * csr,int *csrLen)
 	}
 	*csrLen = pBMem->length;
 	BIO_free(pBIO);
-	printf("pem\t%s\n", csr);
 
 	/*生成文件 DER编码 证书请求*/
 	/* 生成的是无效文件,需要添加公钥生成x509证书才是有效的cer文件*/

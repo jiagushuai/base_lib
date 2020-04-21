@@ -18,6 +18,7 @@ extern "C" {
  * @return      the result
  */
 __export int    add(int a, int b);
+__export int	genRsaCsr(const char * DN, char * csr, int *csrLen);
 
 #ifdef __cplusplus
 }
