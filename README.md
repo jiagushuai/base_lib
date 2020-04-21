@@ -9,10 +9,12 @@ C++总结，包括笔者常使用的各个方法及接口
 ├─base_openssl		openssl实现CA认证的示例
 ├─src				简单示例程序
 ├─vs2015			vs2015的项目工程文件
+├─java_dll			dll打包为jar包供java调用
 ├─README.md			说明文件
 └─xmake.lua			xmake.lua配置文件
 ```
 
++ 直接打开vs2015/vs2015.sln文件即可编译工程
 + 实现转码[gbk_utf8],编码[base64],写日志等
 + [乱码在线恢复](http://www.mytju.com/classcode/tools/messyCodeRecover.asp)
 + base_base64中有根据base64编码转换为PDF文件及文件转换为base64字符串的示例
@@ -24,3 +26,31 @@ C++总结，包括笔者常使用的各个方法及接口
 ## TODO 
 + openssl相关API实现CA认证流程
 + openssl相关命令行实现CA认证流程
+
+
+## xmake相关
++ 安装等可查阅xmake[中文官网](https://xmake.io/#/zh-cn/)
+### 设置Windows平台32位
+
+```
+# 配置编译Windows平台 32位
+xmake f -p windows -a x86
+```
+
+### 根据xmake.lua生成vs项目
+
+```
+# 生成vs项目文件
+xmake project -k vs2015 -m "debug,release"
+# 配置生成vs工程 32位
+xmake project -k vs2015 -m "debug,release" -a x86
+```
+
+### 编译相关
+
+```
+# 编译,加`-v`则显示编译详细信息
+xmake -r -v
+# 恢复默认配置,配置编译当前平台
+xmake f -c
+```
