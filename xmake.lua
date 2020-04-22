@@ -2,7 +2,6 @@
 -- add modes: debug and release 
 add_rules("mode.debug", "mode.release")
 add_includedirs("include")
-add_includedirs("src")
 
 if(is_plat("windows")) then
     add_cxflags("/EHa")
@@ -26,6 +25,7 @@ target("base64")
     set_kind("binary")
 
     -- add files
+    add_includedirs("src/base64")
     add_files("src/base64/base64.cpp") 
     add_files("src/base64/test.cpp") 
 
@@ -36,6 +36,7 @@ target("log")
     set_kind("binary")
 
     -- add files
+    add_includedirs("src/log")
     add_files("src/log/zf_file_output.cpp") 
     add_files("src/log/zf_log.cpp") 
     add_files("src/log/test.cpp") 
@@ -46,6 +47,7 @@ target("transcode")
     set_kind("binary")
 
     -- add files
+    add_includedirs("src/transcode")
     add_files("src/transcode/strnormalize.cpp") 
     add_files("src/transcode/test.cpp") 
 -- add target
@@ -94,7 +96,9 @@ target("base_openssl")
     end
 
     -- add files
-    add_includedirs("base64")
+    add_includedirs("src/log")
+    add_includedirs("src/base64")
+    add_includedirs("src/transcode")
     add_files("src/base64/base64.cpp") 
     add_files("src/transcode/strnormalize.cpp") 
     add_files("src/log/zf_file_output.cpp") 
@@ -105,7 +109,7 @@ target("base_openssl")
     add_files("src/interface.cpp") 
 
 -- add target
-target("base_demo")
+target("demo")
 
     -- set kind
     set_kind("binary")

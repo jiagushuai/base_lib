@@ -101,7 +101,7 @@
             <PreprocessorDefinitions>_USING_V110_SDK71_;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
             <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-            <AdditionalIncludeDirectories>..\..\include;..\..\src</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories>..\..\include;..\..\src\base64</AdditionalIncludeDirectories>
             <AdditionalOptions>-FS /EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
@@ -118,7 +118,7 @@
             <PreprocessorDefinitions>_USING_V110_SDK71_;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
             <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-            <AdditionalIncludeDirectories>..\..\include;..\..\src</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories>..\..\include;..\..\src\base64</AdditionalIncludeDirectories>
             <AdditionalOptions>-FS /EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
@@ -136,7 +136,7 @@
             <PreprocessorDefinitions>_USING_V110_SDK71_;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>None</DebugInformationFormat>
             <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-            <AdditionalIncludeDirectories>..\..\include;..\..\src</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories>..\..\include;..\..\src\base64</AdditionalIncludeDirectories>
             <AdditionalOptions>/EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
@@ -154,7 +154,7 @@
             <PreprocessorDefinitions>_USING_V110_SDK71_;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>None</DebugInformationFormat>
             <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-            <AdditionalIncludeDirectories>..\..\include;..\..\src</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories>..\..\include;..\..\src\base64</AdditionalIncludeDirectories>
             <AdditionalOptions>/EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
