@@ -2,6 +2,7 @@
 -- add modes: debug and release 
 add_rules("mode.debug", "mode.release")
 add_includedirs("include")
+add_includedirs("src")
 
 if(is_plat("windows")) then
     add_cxflags("/EHa")
@@ -20,36 +21,33 @@ if(is_plat("windows")) then
 end
 
 -- add target
-target("base_base64")
+target("base64")
     -- set kind
     set_kind("binary")
 
-    add_includedirs("base_base64")
     -- add files
-    add_files("base_base64/base64.cpp") 
-    add_files("base_base64/test.cpp") 
+    add_files("src/base64/base64.cpp") 
+    add_files("src/base64/test.cpp") 
 
 -- add target
-target("base_log")
+target("log")
 
     -- set kind
     set_kind("binary")
 
-    add_includedirs("base_log")
     -- add files
-    add_files("base_log/zf_file_output.cpp") 
-    add_files("base_log/zf_log.cpp") 
-    add_files("base_log/test.cpp") 
+    add_files("src/log/zf_file_output.cpp") 
+    add_files("src/log/zf_log.cpp") 
+    add_files("src/log/test.cpp") 
 -- add target
-target("base_transcode")
+target("transcode")
 
     -- set kind
     set_kind("binary")
 
-    add_includedirs("base_transcode")
     -- add files
-    add_files("base_transcode/strnormalize.cpp") 
-    add_files("base_transcode/test.cpp") 
+    add_files("src/transcode/strnormalize.cpp") 
+    add_files("src/transcode/test.cpp") 
 -- add target
 target("base_openssl")
 
@@ -96,13 +94,11 @@ target("base_openssl")
     end
 
     -- add files
-    add_includedirs("base_base64")
-    add_files("base_base64/base64.cpp") 
-    add_includedirs("base_transcode")
-    add_files("base_transcode/strnormalize.cpp") 
-    add_includedirs("base_log")
-    add_files("base_log/zf_file_output.cpp") 
-    add_files("base_log/zf_log.cpp") 
+    add_includedirs("base64")
+    add_files("src/base64/base64.cpp") 
+    add_files("src/transcode/strnormalize.cpp") 
+    add_files("src/log/zf_file_output.cpp") 
+    add_files("src/log/zf_log.cpp") 
 
     -- add files
     add_files("src/rsaLib.cpp") 

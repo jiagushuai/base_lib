@@ -96,7 +96,7 @@
             <PreprocessorDefinitions>_USING_V110_SDK71_;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
             <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-            <AdditionalIncludeDirectories>..\..\include;..\..\base_base64;..\..\base_transcode;..\..\base_log</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories>..\..\include;..\..\src;..\..\base64</AdditionalIncludeDirectories>
             <AdditionalOptions>-FS /EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
@@ -112,7 +112,7 @@
             <PreprocessorDefinitions>_USING_V110_SDK71_;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
             <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-            <AdditionalIncludeDirectories>..\..\include;..\..\base_base64;..\..\base_transcode;..\..\base_log</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories>..\..\include;..\..\src;..\..\base64</AdditionalIncludeDirectories>
             <AdditionalOptions>-FS /EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
@@ -129,7 +129,7 @@
             <PreprocessorDefinitions>_USING_V110_SDK71_;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>None</DebugInformationFormat>
             <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-            <AdditionalIncludeDirectories>..\..\include;..\..\base_base64;..\..\base_transcode;..\..\base_log</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories>..\..\include;..\..\src;..\..\base64</AdditionalIncludeDirectories>
             <AdditionalOptions>/EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
@@ -146,34 +146,22 @@
             <PreprocessorDefinitions>_USING_V110_SDK71_;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>None</DebugInformationFormat>
             <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-            <AdditionalIncludeDirectories>..\..\include;..\..\base_base64;..\..\base_transcode;..\..\base_log</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories>..\..\include;..\..\src;..\..\base64</AdditionalIncludeDirectories>
             <AdditionalOptions>/EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
     <ItemGroup>
-        <ClCompile Include="..\..\base_base64\base64.cpp">
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\base_base64\base64.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\base_base64\base64.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\base_base64\base64.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\base_base64\base64.cpp.obj</ObjectFileName>
+        <ClCompile Include="..\..\src\base64\base64.cpp">
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\src\base64\base64.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\src\base64\base64.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\src\base64\base64.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\src\base64\base64.cpp.obj</ObjectFileName>
         </ClCompile>
-        <ClCompile Include="..\..\base_log\zf_file_output.cpp">
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\base_log\zf_file_output.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\base_log\zf_file_output.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\base_log\zf_file_output.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\base_log\zf_file_output.cpp.obj</ObjectFileName>
-        </ClCompile>
-        <ClCompile Include="..\..\base_log\zf_log.cpp">
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\base_log\zf_log.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\base_log\zf_log.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\base_log\zf_log.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\base_log\zf_log.cpp.obj</ObjectFileName>
-        </ClCompile>
-        <ClCompile Include="..\..\src\interface.cpp">
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\src\interface.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\src\interface.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\src\interface.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\src\interface.cpp.obj</ObjectFileName>
+        <ClCompile Include="..\..\src\transcode\strnormalize.cpp">
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\src\transcode\strnormalize.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\src\transcode\strnormalize.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\src\transcode\strnormalize.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\src\transcode\strnormalize.cpp.obj</ObjectFileName>
         </ClCompile>
         <ClCompile Include="..\..\src\rsaLib.cpp">
             <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\src\rsaLib.cpp.obj</ObjectFileName>
@@ -181,11 +169,23 @@
             <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\src\rsaLib.cpp.obj</ObjectFileName>
             <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\src\rsaLib.cpp.obj</ObjectFileName>
         </ClCompile>
-        <ClCompile Include="..\..\base_transcode\strnormalize.cpp">
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\base_transcode\strnormalize.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\base_transcode\strnormalize.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\base_transcode\strnormalize.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\base_transcode\strnormalize.cpp.obj</ObjectFileName>
+        <ClCompile Include="..\..\src\interface.cpp">
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\src\interface.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\src\interface.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\src\interface.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\src\interface.cpp.obj</ObjectFileName>
+        </ClCompile>
+        <ClCompile Include="..\..\src\log\zf_file_output.cpp">
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\src\log\zf_file_output.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\src\log\zf_file_output.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\src\log\zf_file_output.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\src\log\zf_file_output.cpp.obj</ObjectFileName>
+        </ClCompile>
+        <ClCompile Include="..\..\src\log\zf_log.cpp">
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_openssl\windows\x86\debug\src\log\zf_log.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_openssl\windows\x64\release\src\log\zf_log.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_openssl\windows\x86\release\src\log\zf_log.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_openssl\windows\x64\debug\src\log\zf_log.cpp.obj</ObjectFileName>
         </ClCompile>
     </ItemGroup>
     <ItemGroup>

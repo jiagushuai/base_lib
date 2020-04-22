@@ -19,8 +19,8 @@
         </ProjectConfiguration>
     </ItemGroup>
     <PropertyGroup Label="Globals">
-        <ProjectGuid>{DCC05DB4-322F-00A2-9FD0-2BD63828A881}</ProjectGuid>
-        <RootNamespace>base_transcode</RootNamespace>
+        <ProjectGuid>{65C9E159-F036-69E7-54FD-F4DBFEFBC416}</ProjectGuid>
+        <RootNamespace>log</RootNamespace>
         <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
     </PropertyGroup>
     <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -62,29 +62,29 @@
     <PropertyGroup Label="UserMacros" />
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
         <OutDir>..\..\build\windows\x86\debug\</OutDir>
-        <IntDir>..\..\build\.objs\base_transcode\windows\x86\debug\</IntDir>
-        <TargetName>base_transcode</TargetName>
+        <IntDir>..\..\build\.objs\log\windows\x86\debug\</IntDir>
+        <TargetName>log</TargetName>
         <TargetExt>.exe</TargetExt>
         <LinkIncremental>true</LinkIncremental>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
         <OutDir>..\..\build\windows\x64\debug\</OutDir>
-        <IntDir>..\..\build\.objs\base_transcode\windows\x64\debug\</IntDir>
-        <TargetName>base_transcode</TargetName>
+        <IntDir>..\..\build\.objs\log\windows\x64\debug\</IntDir>
+        <TargetName>log</TargetName>
         <TargetExt>.exe</TargetExt>
         <LinkIncremental>true</LinkIncremental>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
         <OutDir>..\..\build\windows\x86\release\</OutDir>
-        <IntDir>..\..\build\.objs\base_transcode\windows\x86\release\</IntDir>
-        <TargetName>base_transcode</TargetName>
+        <IntDir>..\..\build\.objs\log\windows\x86\release\</IntDir>
+        <TargetName>log</TargetName>
         <TargetExt>.exe</TargetExt>
         <LinkIncremental>true</LinkIncremental>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
         <OutDir>..\..\build\windows\x64\release\</OutDir>
-        <IntDir>..\..\build\.objs\base_transcode\windows\x64\release\</IntDir>
-        <TargetName>base_transcode</TargetName>
+        <IntDir>..\..\build\.objs\log\windows\x64\release\</IntDir>
+        <TargetName>log</TargetName>
         <TargetExt>.exe</TargetExt>
         <LinkIncremental>true</LinkIncremental>
     </PropertyGroup>
@@ -101,7 +101,7 @@
             <PreprocessorDefinitions>_USING_V110_SDK71_;__config_debug__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
             <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-            <AdditionalIncludeDirectories>..\..\include;..\..\base_transcode</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories>..\..\include;..\..\src</AdditionalIncludeDirectories>
             <AdditionalOptions>-FS /EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
@@ -118,7 +118,7 @@
             <PreprocessorDefinitions>_USING_V110_SDK71_;__config_debug__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
             <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-            <AdditionalIncludeDirectories>..\..\include;..\..\base_transcode</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories>..\..\include;..\..\src</AdditionalIncludeDirectories>
             <AdditionalOptions>-FS /EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
@@ -136,7 +136,7 @@
             <PreprocessorDefinitions>_USING_V110_SDK71_;__config_release__;__config_Win32__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>None</DebugInformationFormat>
             <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-            <AdditionalIncludeDirectories>..\..\include;..\..\base_transcode</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories>..\..\include;..\..\src</AdditionalIncludeDirectories>
             <AdditionalOptions>/EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
@@ -154,22 +154,28 @@
             <PreprocessorDefinitions>_USING_V110_SDK71_;__config_release__;__config_x64__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <DebugInformationFormat>None</DebugInformationFormat>
             <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-            <AdditionalIncludeDirectories>..\..\include;..\..\base_transcode</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories>..\..\include;..\..\src</AdditionalIncludeDirectories>
             <AdditionalOptions>/EHa -nologo %(AdditionalOptions)</AdditionalOptions>
         </ClCompile>
     </ItemDefinitionGroup>
     <ItemGroup>
-        <ClCompile Include="..\..\base_transcode\test.cpp">
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_transcode\windows\x86\debug\base_transcode\test.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_transcode\windows\x64\release\base_transcode\test.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_transcode\windows\x86\release\base_transcode\test.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_transcode\windows\x64\debug\base_transcode\test.cpp.obj</ObjectFileName>
+        <ClCompile Include="..\..\src\log\zf_file_output.cpp">
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\log\windows\x64\release\src\log\zf_file_output.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\log\windows\x86\release\src\log\zf_file_output.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\log\windows\x86\debug\src\log\zf_file_output.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\log\windows\x64\debug\src\log\zf_file_output.cpp.obj</ObjectFileName>
         </ClCompile>
-        <ClCompile Include="..\..\base_transcode\strnormalize.cpp">
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\base_transcode\windows\x64\debug\base_transcode\strnormalize.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\base_transcode\windows\x64\release\base_transcode\strnormalize.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\base_transcode\windows\x86\debug\base_transcode\strnormalize.cpp.obj</ObjectFileName>
-            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\base_transcode\windows\x86\release\base_transcode\strnormalize.cpp.obj</ObjectFileName>
+        <ClCompile Include="..\..\src\log\test.cpp">
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\log\windows\x86\release\src\log\test.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\log\windows\x64\debug\src\log\test.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\log\windows\x86\debug\src\log\test.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\log\windows\x64\release\src\log\test.cpp.obj</ObjectFileName>
+        </ClCompile>
+        <ClCompile Include="..\..\src\log\zf_log.cpp">
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">..\..\build\.objs\log\windows\x86\debug\src\log\zf_log.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|x64'">..\..\build\.objs\log\windows\x64\release\src\log\zf_log.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='release|Win32'">..\..\build\.objs\log\windows\x86\release\src\log\zf_log.cpp.obj</ObjectFileName>
+            <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='debug|x64'">..\..\build\.objs\log\windows\x64\debug\src\log\zf_log.cpp.obj</ObjectFileName>
         </ClCompile>
     </ItemGroup>
     <ItemGroup>

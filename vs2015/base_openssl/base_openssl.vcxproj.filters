@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <ItemGroup>
-        <Filter Include="base_base64">
-            <UniqueIdentifier>{FC35D4A6-491C-0E34-2BC4-6F2834DFECE3}</UniqueIdentifier>
+        <Filter Include="src\base64">
+            <UniqueIdentifier>{44B112C0-BE38-052E-317B-3562E181DECD}</UniqueIdentifier>
         </Filter>
         <Filter Include="src">
             <UniqueIdentifier>{AFD19EEF-3A3E-277D-9F05-B271490381AC}</UniqueIdentifier>
         </Filter>
-        <Filter Include="base_log">
-            <UniqueIdentifier>{CC28BE43-CD82-AC71-8335-9725B99578F0}</UniqueIdentifier>
+        <Filter Include="src\transcode">
+            <UniqueIdentifier>{A54132EE-3521-24BC-2785-C330E1DA5A8B}</UniqueIdentifier>
         </Filter>
-        <Filter Include="base_transcode">
-            <UniqueIdentifier>{DCC05DB4-322F-00A2-9FD0-2BD63828A881}</UniqueIdentifier>
+        <Filter Include="src\log">
+            <UniqueIdentifier>{E290AF3D-369C-A04B-37B6-F63F62D744BA}</UniqueIdentifier>
         </Filter>
     </ItemGroup>
     <ItemGroup>
-        <ClCompile Include="..\..\base_base64\base64.cpp">
-            <Filter>base_base64</Filter>
+        <ClCompile Include="..\..\src\base64\base64.cpp">
+            <Filter>src\base64</Filter>
         </ClCompile>
-        <ClCompile Include="..\..\src\interface.cpp">
-            <Filter>src</Filter>
-        </ClCompile>
-        <ClCompile Include="..\..\base_log\zf_log.cpp">
-            <Filter>base_log</Filter>
-        </ClCompile>
-        <ClCompile Include="..\..\base_transcode\strnormalize.cpp">
-            <Filter>base_transcode</Filter>
+        <ClCompile Include="..\..\src\transcode\strnormalize.cpp">
+            <Filter>src\transcode</Filter>
         </ClCompile>
         <ClCompile Include="..\..\src\rsaLib.cpp">
             <Filter>src</Filter>
         </ClCompile>
-        <ClCompile Include="..\..\base_log\zf_file_output.cpp">
-            <Filter>base_log</Filter>
+        <ClCompile Include="..\..\src\interface.cpp">
+            <Filter>src</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\src\log\zf_file_output.cpp">
+            <Filter>src\log</Filter>
+        </ClCompile>
+        <ClCompile Include="..\..\src\log\zf_log.cpp">
+            <Filter>src\log</Filter>
         </ClCompile>
     </ItemGroup>
     <ItemGroup>
