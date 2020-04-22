@@ -55,7 +55,7 @@ int genX509NAME(const char * DN, X509_NAME *pX509Name)
 	{
 		return -1;
 	}
-	/*ÓÃDNÉú³ÉX509_NAME½á¹¹*/
+	/*ï¿½ï¿½DNï¿½ï¿½ï¿½ï¿½X509_NAMEï¿½á¹¹*/
 
 	int					iRV = 0;
 	std::vector<string> vctDNs;
@@ -147,24 +147,24 @@ int genX509REQ(X509_NAME * pX509DN, EVP_PKEY *pEVPKey,X509_REQ  *pX509Req)
 
 int toFormatPri(RSA *pRSA,char * base64)
 {
-	/* DER±àÂë pri*/
+	/* DERï¿½ï¿½ï¿½ï¿½ pri*/
 	int             nLen, baseLen = 0;
 	unsigned char   *pDer = NULL;
 	unsigned char   *p = NULL;
 
-	//½«RSA¶ÔÏó×ª»»ÎªË½Ô¿ Ë½Ô¿·ÖÎª´øÃÜÂë±£»¤ºÍÎÞÃÜÂëµÄ Ê¹ÓÃ²»Í¬º¯Êý
-	/*ÎÞÃÜÂë ×Ö·û´® DER±àÂë Ë½Ô¿*/
+	//ï¿½ï¿½RSAï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ÎªË½Ô¿ Ë½Ô¿ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ë±£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ê¹ï¿½Ã²ï¿½Í¬ï¿½ï¿½ï¿½ï¿½
+	/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö·ï¿½ï¿½ï¿½ DERï¿½ï¿½ï¿½ï¿½ Ë½Ô¿*/
 	nLen = i2d_RSAPrivateKey(pRSA, NULL);
 	pDer = (unsigned char *)malloc(nLen);
 	p = pDer;
 	nLen = i2d_RSAPrivateKey(pRSA, &p);
-	baseLen = getEncodeLen(nLen, pDer);//±àÂëºóµÄ×Ö·û´®³¤¶È
+	baseLen = getEncodeLen(nLen, pDer);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (base64)
 		memcpy(base64, base64_encode(nLen, pDer), baseLen);
 	free(pDer);
 	printf("not pwd pri DER\n%s\n", base64);
 
-	/*ÎÞÃÜÂë ×Ö·û´® PEM±àÂë Ë½Ô¿*/
+	/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö·ï¿½ï¿½ï¿½ PEMï¿½ï¿½ï¿½ï¿½ Ë½Ô¿*/
 	BUF_MEM         *pBMem = NULL;
 	BIO             *pBIO = NULL;
 
@@ -177,12 +177,13 @@ int toFormatPri(RSA *pRSA,char * base64)
 	{
 		memcpy(base64, pBMem->data, pBMem->length);
 	}
+	printf("not pwd pri PEM\n%s\n", base64);
 	BIO_free(pBIO);
 	return 0;
 }
 int toFormatPriPwd(EVP_PKEY *pEVPKey, char * base64, char *pwd)
 {
-	/*´øÃÜÂë ×Ö·û´® DER±àÂë Ë½Ô¿*/
+	/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö·ï¿½ï¿½ï¿½ DERï¿½ï¿½ï¿½ï¿½ Ë½Ô¿*/
 	int             iRV,nLen, baseLen = 0;
 	BUF_MEM         *pBMem = NULL;
 	BIO             *pBIO = NULL;
@@ -192,13 +193,13 @@ int toFormatPriPwd(EVP_PKEY *pEVPKey, char * base64, char *pwd)
 	//encrypt the the private key with the passphrase and put it in the BIO in DER format 
 	iRV = i2d_PKCS8PrivateKey_bio(pBIO, pEVPKey, EVP_des_ede3_cbc(), pwd, strlen(pwd), passphrase, pwd);
 	BIO_get_mem_ptr(pBIO, &pBMem);
-	baseLen = getEncodeLen(pBMem->length, (unsigned char *)pBMem->data);//±àÂëºóµÄ×Ö·û´®³¤¶È
+	baseLen = getEncodeLen(pBMem->length, (unsigned char *)pBMem->data);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (base64)
 		memcpy(base64, base64_encode(pBMem->length, (unsigned char *)pBMem->data), baseLen);
 	base64[baseLen] = '\0';
 	printf("pwd pri DER\n%s\n", base64);
 	BIO_free(pBIO);
-	/*´øÃÜÂë ×Ö·û´® PEM±àÂë Ë½Ô¿*/
+	/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö·ï¿½ï¿½ï¿½ PEMï¿½ï¿½ï¿½ï¿½ Ë½Ô¿*/
 	pBIO = BIO_new(BIO_s_mem());
 	if (PEM_write_bio_PKCS8PrivateKey(pBIO, pEVPKey, EVP_des_ede3_cbc(), NULL, 0, 0, pwd) != 1) {
 		printf("private key error\n");
@@ -214,7 +215,7 @@ int toFormatPriPwd(EVP_PKEY *pEVPKey, char * base64, char *pwd)
 
 int toFormatPub(RSA *pRSA, char *base64)
 {
-	/*×Ö·û´® DER±àÂë ¹«Ô¿*/
+	/*ï¿½Ö·ï¿½ï¿½ï¿½ DERï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ô¿*/
 	int             nLen, baseLen = 0;
 	unsigned char   *pDer = NULL;
 	unsigned char   *p = NULL;
@@ -222,13 +223,13 @@ int toFormatPub(RSA *pRSA, char *base64)
 	pDer = (unsigned char *)malloc(nLen);
 	p = pDer;
 	nLen = i2d_RSA_PUBKEY(pRSA, &p);
-	baseLen = getEncodeLen(nLen, pDer);//±àÂëºóµÄ×Ö·û´®³¤¶È
+	baseLen = getEncodeLen(nLen, pDer);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (base64)
 		memcpy(base64, base64_encode(nLen, pDer), baseLen);
 	printf("pub DER\n%s\n", base64);
 	free(pDer);
 
-	/*×Ö·û´® PEM±àÂë ¹«Ô¿*/
+	/*ï¿½Ö·ï¿½ï¿½ï¿½ PEMï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ô¿*/
 	BIO             *pBIO = NULL;
 	BIO             *pPemBIO = NULL;
 	BUF_MEM         *pBMem = NULL;
@@ -253,7 +254,7 @@ int toFormatPubFile(RSA *pRSA)
 	BUF_MEM         *pBMem = NULL;
 	int             iRV = 0;
 
-	/* PEM±àÂë ¹«Ô¿*/
+	/* PEMï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ô¿*/
 	pBIO = BIO_new_file("pubKey.pem", "w");
 	if (PEM_write_bio_RSA_PUBKEY(pBIO, pRSA) != 1) {
 		ZF_LOGE("RSA_PUBKEY error");
@@ -261,14 +262,14 @@ int toFormatPubFile(RSA *pRSA)
 		return -1;
 	}
 	BIO_free(pBIO);
-	/* DER±àÂë ¹«Ô¿*/
+	/* DERï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ô¿*/
 	pBIO = BIO_new_file("pubKey.der", "w");
 	if (!pBIO)
 	{
 		ZF_LOGE("pubKey.der pBIO error");
 		goto free_all;
 	}
-	iRV = i2d_RSA_PUBKEY_bio(pBIO, pRSA);// ¹¦ÄÜÓëi2d_X509_REQ_fpÏàÍ¬
+	iRV = i2d_RSA_PUBKEY_bio(pBIO, pRSA);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½i2d_X509_REQ_fpï¿½ï¿½Í¬
 	if (iRV != 1)
 	{
 		ZF_LOGE("pubKey.der error");
@@ -285,7 +286,7 @@ int toFormatPriFile(RSA *pRSA)
 	BUF_MEM         *pBMem = NULL;
 	int             iRV = 0,nLen = 0;
 
-	/* PEM±àÂë ÎÞÃÜÂë Ë½Ô¿ÎÄ¼þ*/
+	/* PEMï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ë½Ô¿ï¿½Ä¼ï¿½*/
 	pBIO = BIO_new_file("priKey.pem", "w");
 	if (!pBIO)
 	{
@@ -297,7 +298,7 @@ int toFormatPriFile(RSA *pRSA)
 		ZF_LOGE("not pwd priKey.der error");
 		goto free_all;
 	}
-	/* DER±àÂë ÎÞÃÜÂë Ë½Ô¿ÎÄ¼þ*/
+	/* DERï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ë½Ô¿ï¿½Ä¼ï¿½*/
 	pBIO = BIO_new_file("priKey.der", "w");
 	if (!pBIO)
 	{
@@ -305,7 +306,7 @@ int toFormatPriFile(RSA *pRSA)
 		goto free_all;
 	}
 
-	iRV = i2d_RSAPrivateKey_bio(pBIO, pRSA);// ¹¦ÄÜÓëi2d_RSAPrivateKey_bio_fpÏàÍ¬
+	iRV = i2d_RSAPrivateKey_bio(pBIO, pRSA);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½i2d_RSAPrivateKey_bio_fpï¿½ï¿½Í¬
 	if (iRV != 1)
 	{
 		ZF_LOGE("priKey.der error");
@@ -323,7 +324,7 @@ int toFormatPriPwdFile(EVP_PKEY *pEVPKey,char *pfxPwd)
 	BIO             *pBIO = NULL;
 	int             iRV = 0, nLen = 0;
 
-	/* PEM±àÂë Ë½Ô¿ÎÄ¼þ*/
+	/* PEMï¿½ï¿½ï¿½ï¿½ Ë½Ô¿ï¿½Ä¼ï¿½*/
 	pBIO = BIO_new_file("priKey_pwd.pem", "w");
 	if (!pBIO)
 	{
@@ -335,7 +336,7 @@ int toFormatPriPwdFile(EVP_PKEY *pEVPKey,char *pfxPwd)
 		ZF_LOGE("pri pwd error");
 		goto free_all;
 	}
-	/* DER±àÂë ´øÃÜÂë Ë½Ô¿ÎÄ¼þ*/
+	/* DERï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ë½Ô¿ï¿½Ä¼ï¿½*/
 	pBIO = BIO_new_file("priKey_pwd.der", "w");
 	if (!pBIO)
 	{
@@ -343,7 +344,7 @@ int toFormatPriPwdFile(EVP_PKEY *pEVPKey,char *pfxPwd)
 		goto free_all;
 	}
 
-	iRV = i2d_PKCS8PrivateKey_bio(pBIO, pEVPKey, EVP_des_ede3_cbc(), NULL, 0, 0, pfxPwd);// ¹¦ÄÜÓëi2d_PKCS8PrivateKey_bio_fpÏàÍ¬
+	iRV = i2d_PKCS8PrivateKey_bio(pBIO, pEVPKey, EVP_des_ede3_cbc(), NULL, 0, 0, pfxPwd);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½i2d_PKCS8PrivateKey_bio_fpï¿½ï¿½Í¬
 	if (iRV != 1)
 	{
 		ZF_LOGE("priKey_pwd.der error");
@@ -363,7 +364,7 @@ free_all:
 //	BUF_MEM         *pBMem = NULL;
 //	int             nLen = 0;
 //
-//	/* PEM±àÂë Ö¤ÊéÇëÇó*/
+//	/* PEMï¿½ï¿½ï¿½ï¿½ Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 //	pBIO = BIO_new_file("pkcs10.pem", "w");
 //	if (PEM_write_bio_X509_REQ(pBIO, pX509Req) != 1) {
 //		ZF_LOGE("X509_REQ error");
@@ -517,13 +518,13 @@ free_all:
 //		rv = SAR_PARAM_PARSE_ERR;
 //		goto free;
 //	}
-//	/* 02£º·Ö½âX509½á¹¹µÃµ½EVP_PKEY */
+//	/* 02ï¿½ï¿½ï¿½Ö½ï¿½X509ï¿½á¹¹ï¿½Ãµï¿½EVP_PKEY */
 //	pEVPKey = X509_get_pubkey(x509);
 //	if (NULL == pEVPKey) {
 //		rv = SAR_PARAM_PARSE_ERR;
 //		goto free;
 //	}
-//	/* 03£ºEVP_PKEY×ª»»³ÉRSAµÄKEY */
+//	/* 03ï¿½ï¿½EVP_PKEY×ªï¿½ï¿½ï¿½ï¿½RSAï¿½ï¿½KEY */
 //	*rsa = EVP_PKEY_get1_RSA(pEVPKey);
 //	if (NULL == *rsa) {
 //		ZF_LOGE("verifyByCer rsa  error");
@@ -569,13 +570,13 @@ free_all:
 //		rv = SAR_PARAM_PARSE_ERR;
 //		goto free;
 //	}
-//	/* 02£º·Ö½âX509½á¹¹µÃµ½EVP_PKEY */
+//	/* 02ï¿½ï¿½ï¿½Ö½ï¿½X509ï¿½á¹¹ï¿½Ãµï¿½EVP_PKEY */
 //	pEVPKey = X509_get_pubkey(x509);
 //	if (NULL == pEVPKey) {
 //		rv = SAR_PARAM_PARSE_ERR;
 //		goto free;
 //	}
-//	/* 03£ºEVP_PKEY×ª»»³ÉRSAµÄKEY */
+//	/* 03ï¿½ï¿½EVP_PKEY×ªï¿½ï¿½ï¿½ï¿½RSAï¿½ï¿½KEY */
 //	*ec_key = EVP_PKEY_get1_EC_KEY(pEVPKey);
 //	if (NULL == *ec_key) {
 //		rv = SAR_PARAM_PARSE_ERR;
@@ -595,7 +596,7 @@ free_all:
 //	str_normalize_init();
 //	int iLen = 0;
 //	int num = 0;
-//	while (key != NULL) {//ÕÒµ½¶ÔÓ¦ÈçCNµÄÐòºÅ
+//	while (key != NULL) {//ï¿½Òµï¿½ï¿½ï¿½Ó¦ï¿½ï¿½CNï¿½ï¿½ï¿½ï¿½ï¿½
 //		if (strcmp(nids[num].name, key) == 0) {
 //			break;
 //		}
@@ -617,7 +618,7 @@ free_all:
 //		strcat_s(csName, 1024, "=");
 //		strcat_s(csName, 1024, gbkbuffer);
 //
-//		if (key != NULL) {//´«Èëkey´æÔÚÔòÕÒµ½¸ÃÖµ¾Íbreak³öÀ´À²
+//		if (key != NULL) {//ï¿½ï¿½ï¿½ï¿½keyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½Öµï¿½ï¿½breakï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //			delete[]gbkbuffer;
 //			break;
 //		}
