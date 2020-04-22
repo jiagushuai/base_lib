@@ -55,7 +55,7 @@ int genX509NAME(const char * DN, X509_NAME *pX509Name)
 	{
 		return -1;
 	}
-	/*��DN����X509_NAME�ṹ*/
+	/*DN--->X509_NAME*/
 
 	int					iRV = 0;
 	std::vector<string> vctDNs;
@@ -147,7 +147,7 @@ int genX509REQ(X509_NAME * pX509DN, EVP_PKEY *pEVPKey,X509_REQ  *pX509Req)
 
 int toFormatPri(RSA *pRSA,char * base64)
 {
-	/* DER���� pri*/
+	/* DER pri*/
 	int             nLen, baseLen = 0;
 	unsigned char   *pDer = NULL;
 	unsigned char   *p = NULL;
@@ -183,7 +183,7 @@ int toFormatPri(RSA *pRSA,char * base64)
 }
 int toFormatPriPwd(EVP_PKEY *pEVPKey, char * base64, char *pwd)
 {
-	/*������ �ַ��� DER���� ˽Կ*/
+	/*带密码 字符串 DER编码 私钥*/
 	int             iRV,nLen, baseLen = 0;
 	BUF_MEM         *pBMem = NULL;
 	BIO             *pBIO = NULL;
@@ -199,7 +199,7 @@ int toFormatPriPwd(EVP_PKEY *pEVPKey, char * base64, char *pwd)
 	base64[baseLen] = '\0';
 	printf("pwd pri DER\n%s\n", base64);
 	BIO_free(pBIO);
-	/*������ �ַ��� PEM���� ˽Կ*/
+	/*带密码 字符串 PEM编码 私钥*/
 	pBIO = BIO_new(BIO_s_mem());
 	if (PEM_write_bio_PKCS8PrivateKey(pBIO, pEVPKey, EVP_des_ede3_cbc(), NULL, 0, 0, pwd) != 1) {
 		printf("private key error\n");
@@ -215,7 +215,7 @@ int toFormatPriPwd(EVP_PKEY *pEVPKey, char * base64, char *pwd)
 
 int toFormatPub(RSA *pRSA, char *base64)
 {
-	/*�ַ��� DER���� ��Կ*/
+	/*字符串 DER编码 公钥*/
 	int             nLen, baseLen = 0;
 	unsigned char   *pDer = NULL;
 	unsigned char   *p = NULL;
@@ -223,13 +223,13 @@ int toFormatPub(RSA *pRSA, char *base64)
 	pDer = (unsigned char *)malloc(nLen);
 	p = pDer;
 	nLen = i2d_RSA_PUBKEY(pRSA, &p);
-	baseLen = getEncodeLen(nLen, pDer);//�������ַ�������
+	baseLen = getEncodeLen(nLen, pDer);
 	if (base64)
 		memcpy(base64, base64_encode(nLen, pDer), baseLen);
 	printf("pub DER\n%s\n", base64);
 	free(pDer);
 
-	/*�ַ��� PEM���� ��Կ*/
+	/*字符串 PEM编码 公钥*/
 	BIO             *pBIO = NULL;
 	BIO             *pPemBIO = NULL;
 	BUF_MEM         *pBMem = NULL;
@@ -254,7 +254,7 @@ int toFormatPubFile(RSA *pRSA)
 	BUF_MEM         *pBMem = NULL;
 	int             iRV = 0;
 
-	/* PEM���� ��Կ*/
+	/* PEM编码 公钥文件*/
 	pBIO = BIO_new_file("pubKey.pem", "w");
 	if (PEM_write_bio_RSA_PUBKEY(pBIO, pRSA) != 1) {
 		ZF_LOGE("RSA_PUBKEY error");
@@ -262,14 +262,14 @@ int toFormatPubFile(RSA *pRSA)
 		return -1;
 	}
 	BIO_free(pBIO);
-	/* DER���� ��Կ*/
+	/* DER编码 公钥文件*/
 	pBIO = BIO_new_file("pubKey.der", "w");
 	if (!pBIO)
 	{
 		ZF_LOGE("pubKey.der pBIO error");
 		goto free_all;
 	}
-	iRV = i2d_RSA_PUBKEY_bio(pBIO, pRSA);// ������i2d_X509_REQ_fp��ͬ
+	iRV = i2d_RSA_PUBKEY_bio(pBIO, pRSA);
 	if (iRV != 1)
 	{
 		ZF_LOGE("pubKey.der error");
@@ -286,7 +286,7 @@ int toFormatPriFile(RSA *pRSA)
 	BUF_MEM         *pBMem = NULL;
 	int             iRV = 0,nLen = 0;
 
-	/* PEM���� ������ ˽Կ�ļ�*/
+	/* PEM编码 无密码 私钥文件*/
 	pBIO = BIO_new_file("priKey.pem", "w");
 	if (!pBIO)
 	{
@@ -298,7 +298,7 @@ int toFormatPriFile(RSA *pRSA)
 		ZF_LOGE("not pwd priKey.der error");
 		goto free_all;
 	}
-	/* DER���� ������ ˽Կ�ļ�*/
+	/* DER编码 无密码 私钥文件*/
 	pBIO = BIO_new_file("priKey.der", "w");
 	if (!pBIO)
 	{
@@ -306,7 +306,7 @@ int toFormatPriFile(RSA *pRSA)
 		goto free_all;
 	}
 
-	iRV = i2d_RSAPrivateKey_bio(pBIO, pRSA);// ������i2d_RSAPrivateKey_bio_fp��ͬ
+	iRV = i2d_RSAPrivateKey_bio(pBIO, pRSA);
 	if (iRV != 1)
 	{
 		ZF_LOGE("priKey.der error");
@@ -324,7 +324,7 @@ int toFormatPriPwdFile(EVP_PKEY *pEVPKey,char *pfxPwd)
 	BIO             *pBIO = NULL;
 	int             iRV = 0, nLen = 0;
 
-	/* PEM���� ˽Կ�ļ�*/
+	/* PEM编码 私钥文件*/
 	pBIO = BIO_new_file("priKey_pwd.pem", "w");
 	if (!pBIO)
 	{
@@ -336,7 +336,7 @@ int toFormatPriPwdFile(EVP_PKEY *pEVPKey,char *pfxPwd)
 		ZF_LOGE("pri pwd error");
 		goto free_all;
 	}
-	/* DER���� ������ ˽Կ�ļ�*/
+	/* DER编码 带密码 私钥文件*/
 	pBIO = BIO_new_file("priKey_pwd.der", "w");
 	if (!pBIO)
 	{
