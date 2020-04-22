@@ -144,165 +144,218 @@ int genX509REQ(X509_NAME * pX509DN, EVP_PKEY *pEVPKey,X509_REQ  *pX509Req)
 	}
 	return 0;
 }
-//
-//int genEcPubDER(EC_KEY *ec_key, unsigned  char * pubKeyBase64, int * pubLen)
-//{
-//	/* DER编码 pri*/
-//	int             nLen = 0;
-//	unsigned char   *pDer = NULL;
-//	unsigned char   *p = NULL;
-//
-//	/* DER编码 pubkey*/
-//	nLen = i2d_EC_PUBKEY(ec_key, NULL);
-//	pDer = (unsigned char *)malloc(nLen);
-//	p = pDer;//i2o_ECPublicKey
-//	nLen = i2d_EC_PUBKEY(ec_key, &p);
-//	memcpy(pubKeyBase64, pDer, nLen);
-//	*pubLen = nLen;
-//	free(pDer);
-//
-//	//nLen = i2o_ECPublicKey(ec_key, NULL);
-//	//pDer = (unsigned char *)malloc(nLen);
-//	//p = pDer;
-//	//nLen = i2o_ECPublicKey(ec_key, &p);
-//	//memcpy(csr, pDer, nLen);
-//	//*csrLen = nLen;
-//	//free(pDer);
-//	return 0;
-//}
-//int genCsrDER(X509_REQ  *pX509Req, unsigned char * csr, int * csrLen)
-//{
-//	/* DER编码 pri*/
-//	BIO             *pPemBIO = NULL;
-//	BUF_MEM         *pBMem = NULL;
-//	int             iRV = 0, nLen = 0;
-//	unsigned char   *pDer = NULL;
-//	unsigned char   *p = NULL;
-//	
-//	/* DER编码 pkcs10*/
-//	nLen = i2d_X509_REQ(pX509Req, NULL);
-//	pDer = (unsigned char *)malloc(nLen);
-//	p = pDer;
-//	nLen = i2d_X509_REQ(pX509Req, &p);
-//	memcpy(csr, pDer, nLen);
-//	*csrLen = nLen;
-//	free(pDer);
-//	return 0;
-//}
-//int genPriPkcs8(EVP_PKEY *pEVPKey, char * pfxPwd,  unsigned char * priKeyBase64, int * priLen)
-//{
-//	/* DER编码 pri*/
-//	BIO             *pPemBIO = NULL;
-//	BUF_MEM         *pBMem = NULL;
-//	int             iRV = 0;
-//	pPemBIO = BIO_new(BIO_s_mem());
-//	pem_password_cb *passphrase;
-//	// encrypt the the private key with the passphrase and put it in the BIO in DER format 
-//	iRV = i2d_PKCS8PrivateKey_bio(pPemBIO, pEVPKey, EVP_des_ede3_cbc(), pfxPwd, strlen(pfxPwd), passphrase, pfxPwd);
-//	BIO_get_mem_ptr(pPemBIO, &pBMem);
-//	if (priKeyBase64)
-//	{
-//		memcpy(priKeyBase64, pBMem->data, pBMem->length);
-//	}
-//	*priLen = pBMem->length;
-//	BIO_free(pPemBIO);
-//	return 0;
-//}
-//
-//int genEcPubPemFile(EC_KEY *ec_key, unsigned  char * pubKeyBase64, int * pubLen)
-//{
-//	BIO             *pBIO = NULL;
-//	BIO             *pPemBIO = NULL;
-//	BUF_MEM         *pBMem = NULL;
-//	int             nLen = 0;
-//
-//	/* PEM编码 证书请求*/
-//	pBIO = BIO_new_file("pubKey.pem", "w");
-//	if (PEM_write_bio_EC_PUBKEY(pBIO, ec_key) != 1) {
-//		ZF_LOGE("EC_PUBKEY error");
-//		BIO_free(pBIO);
-//		return SAR_PARAM_EXECL_ERR;
-//	}
-//	BIO_free(pBIO);
-//	pPemBIO = BIO_new(BIO_s_mem());
-//	if (PEM_write_bio_EC_PUBKEY(pPemBIO, ec_key) != 1) {
-//		ZF_LOGE("EC_PUBKEY error");
-//		BIO_free(pPemBIO);
-//		return SAR_PARAM_EXECL_ERR;
-//	}
-//	BIO_get_mem_ptr(pPemBIO, &pBMem);
-//	if (pubKeyBase64)
-//	{
-//		memcpy(pubKeyBase64, pBMem->data, pBMem->length);
-//	}
-//	*pubLen = pBMem->length;
-//	BIO_free(pPemBIO);
-//	return 0;
-//}
-//
-//int genRsaPubPemFile(RSA *pRSA, unsigned  char * pubKeyBase64, int * pubLen)
-//{
-//	BIO             *pBIO = NULL;
-//	BIO             *pPemBIO = NULL;
-//	BUF_MEM         *pBMem = NULL;
-//	int             nLen = 0;
-//
-//	/* PEM编码 证书请求*/
-//	pBIO = BIO_new_file("pubKey.pem", "w");
-//	if (PEM_write_bio_RSA_PUBKEY(pBIO, pRSA) != 1) {
-//		ZF_LOGE("RSA_PUBKEY error");
-//		BIO_free(pBIO);
-//		return SAR_PARAM_EXECL_ERR;
-//	}
-//	BIO_free(pBIO);
-//	pPemBIO = BIO_new(BIO_s_mem());
-//	if (PEM_write_bio_RSA_PUBKEY(pPemBIO, pRSA) != 1) {
-//		ZF_LOGE("RSA_PUBKEY error");
-//		BIO_free(pPemBIO);
-//		return SAR_PARAM_EXECL_ERR;
-//	}
-//	BIO_get_mem_ptr(pPemBIO, &pBMem);
-//	if (pubKeyBase64)
-//	{
-//		memcpy(pubKeyBase64, pBMem->data, pBMem->length);
-//	}
-//	*pubLen = pBMem->length;
-//	BIO_free(pPemBIO);
-//	return 0;
-//}
-//
-//int genPriPemFile(EVP_PKEY *pEVPKey, char * pfxPwd, unsigned char * priKeyBase64, int * priLen)
-//{
-//	BIO             *pBIO = NULL;
-//	BIO             *pPemBIO = NULL;
-//	BUF_MEM         *pBMem = NULL;
-//	int             iRV = 0,nLen = 0;
-//
-//	/* PEM编码 证书请求*/
-//	pBIO = BIO_new_file("priKey.pem", "w");
-//	iRV = PEM_write_bio_PKCS8PrivateKey(pBIO, pEVPKey, EVP_des_ede3_cbc(), NULL, 0, 0, pfxPwd);
-//	if (iRV != 1) {
-//		ZF_LOGE("PKCS8PrivateKey error");
-//		BIO_free(pBIO);
-//		return SAR_PARAM_EXECL_ERR;
-//	}
-//	BIO_free(pBIO);
-//	pPemBIO = BIO_new(BIO_s_mem());
-//	iRV = PEM_write_bio_PKCS8PrivateKey(pPemBIO, pEVPKey, EVP_des_ede3_cbc(), NULL, 0, 0, pfxPwd);
-//	if (iRV != 1) {
-//		ZF_LOGE("PKCS8PrivateKey error");
-//		BIO_free(pPemBIO);
-//		return SAR_PARAM_EXECL_ERR;
-//	}
-//	BIO_get_mem_ptr(pPemBIO, &pBMem);
-//	if (priKeyBase64)
-//	{
-//		memcpy(priKeyBase64, pBMem->data, pBMem->length);
-//	}
-//	*priLen = pBMem->length;
-//	BIO_free(pPemBIO);
-//	return 0;
-//}
+
+int toFormatPri(RSA *pRSA,char * base64)
+{
+	/* DER编码 pri*/
+	int             nLen, baseLen = 0;
+	unsigned char   *pDer = NULL;
+	unsigned char   *p = NULL;
+
+	//将RSA对象转换为私钥 私钥分为带密码保护和无密码的 使用不同函数
+	/*无密码 字符串 DER编码 私钥*/
+	nLen = i2d_RSAPrivateKey(pRSA, NULL);
+	pDer = (unsigned char *)malloc(nLen);
+	p = pDer;
+	nLen = i2d_RSAPrivateKey(pRSA, &p);
+	baseLen = getEncodeLen(nLen, pDer);//编码后的字符串长度
+	if (base64)
+		memcpy(base64, base64_encode(nLen, pDer), baseLen);
+	free(pDer);
+	printf("not pwd pri DER\n%s\n", base64);
+
+	/*无密码 字符串 PEM编码 私钥*/
+	BUF_MEM         *pBMem = NULL;
+	BIO             *pBIO = NULL;
+
+	pBIO = BIO_new(BIO_s_mem());
+	if (PEM_write_bio_RSAPrivateKey(pBIO, pRSA, NULL, NULL, 0, NULL, NULL) != 1) {
+		printf("private key error\n");
+	}
+	BIO_get_mem_ptr(pBIO, &pBMem);
+	if (base64)
+	{
+		memcpy(base64, pBMem->data, pBMem->length);
+	}
+	BIO_free(pBIO);
+	return 0;
+}
+int toFormatPriPwd(EVP_PKEY *pEVPKey, char * base64, char *pwd)
+{
+	/*带密码 字符串 DER编码 私钥*/
+	int             iRV,nLen, baseLen = 0;
+	BUF_MEM         *pBMem = NULL;
+	BIO             *pBIO = NULL;
+	pem_password_cb *passphrase;
+
+	pBIO = BIO_new(BIO_s_mem());
+	//encrypt the the private key with the passphrase and put it in the BIO in DER format 
+	iRV = i2d_PKCS8PrivateKey_bio(pBIO, pEVPKey, EVP_des_ede3_cbc(), pwd, strlen(pwd), passphrase, pwd);
+	BIO_get_mem_ptr(pBIO, &pBMem);
+	baseLen = getEncodeLen(pBMem->length, (unsigned char *)pBMem->data);//编码后的字符串长度
+	if (base64)
+		memcpy(base64, base64_encode(pBMem->length, (unsigned char *)pBMem->data), baseLen);
+	base64[baseLen] = '\0';
+	printf("pwd pri DER\n%s\n", base64);
+	BIO_free(pBIO);
+	/*带密码 字符串 PEM编码 私钥*/
+	pBIO = BIO_new(BIO_s_mem());
+	if (PEM_write_bio_PKCS8PrivateKey(pBIO, pEVPKey, EVP_des_ede3_cbc(), NULL, 0, 0, pwd) != 1) {
+		printf("private key error\n");
+	}
+	BIO_get_mem_ptr(pBIO, &pBMem);
+	if (base64)
+	{
+		memcpy(base64, pBMem->data, pBMem->length);
+	}
+	BIO_free(pBIO);
+	return 0;
+}
+
+int toFormatPub(RSA *pRSA, char *base64)
+{
+	/*字符串 DER编码 公钥*/
+	int             nLen, baseLen = 0;
+	unsigned char   *pDer = NULL;
+	unsigned char   *p = NULL;
+	nLen = i2d_RSA_PUBKEY(pRSA, NULL);
+	pDer = (unsigned char *)malloc(nLen);
+	p = pDer;
+	nLen = i2d_RSA_PUBKEY(pRSA, &p);
+	baseLen = getEncodeLen(nLen, pDer);//编码后的字符串长度
+	if (base64)
+		memcpy(base64, base64_encode(nLen, pDer), baseLen);
+	printf("pub DER\n%s\n", base64);
+	free(pDer);
+
+	/*字符串 PEM编码 公钥*/
+	BIO             *pBIO = NULL;
+	BIO             *pPemBIO = NULL;
+	BUF_MEM         *pBMem = NULL;
+	pPemBIO = BIO_new(BIO_s_mem());
+	if (PEM_write_bio_RSA_PUBKEY(pPemBIO, pRSA) != 1) {
+		ZF_LOGE("RSA_PUBKEY error");
+		BIO_free(pPemBIO);
+		return -1;
+	}
+	BIO_get_mem_ptr(pPemBIO, &pBMem);
+	if (base64)
+	{
+		memcpy(base64, pBMem->data, pBMem->length);
+	}
+	BIO_free(pPemBIO);
+	return 0;
+}
+
+int toFormatPubFile(RSA *pRSA)
+{
+	BIO             *pBIO = NULL;
+	BUF_MEM         *pBMem = NULL;
+	int             iRV = 0;
+
+	/* PEM编码 公钥*/
+	pBIO = BIO_new_file("pubKey.pem", "w");
+	if (PEM_write_bio_RSA_PUBKEY(pBIO, pRSA) != 1) {
+		ZF_LOGE("RSA_PUBKEY error");
+		BIO_free(pBIO);
+		return -1;
+	}
+	BIO_free(pBIO);
+	/* DER编码 公钥*/
+	pBIO = BIO_new_file("pubKey.der", "w");
+	if (!pBIO)
+	{
+		ZF_LOGE("pubKey.der pBIO error");
+		goto free_all;
+	}
+	iRV = i2d_RSA_PUBKEY_bio(pBIO, pRSA);// 功能与i2d_X509_REQ_fp相同
+	if (iRV != 1)
+	{
+		ZF_LOGE("pubKey.der error");
+		goto free_all;
+	}
+free_all:
+	BIO_free(pBIO);
+	return 0;
+}
+
+int toFormatPriFile(RSA *pRSA)
+{
+	BIO             *pBIO = NULL;
+	BUF_MEM         *pBMem = NULL;
+	int             iRV = 0,nLen = 0;
+
+	/* PEM编码 无密码 私钥文件*/
+	pBIO = BIO_new_file("priKey.pem", "w");
+	if (!pBIO)
+	{
+		ZF_LOGE("not pwd priKey.der pBIO error");
+		goto free_all;
+	}
+	iRV = PEM_write_bio_RSAPrivateKey(pBIO, pRSA, NULL, NULL, 0, NULL, NULL);
+	if (iRV != 1) {
+		ZF_LOGE("not pwd priKey.der error");
+		goto free_all;
+	}
+	/* DER编码 无密码 私钥文件*/
+	pBIO = BIO_new_file("priKey.der", "w");
+	if (!pBIO)
+	{
+		ZF_LOGE("priKey.der pBIO error");
+		goto free_all;
+	}
+
+	iRV = i2d_RSAPrivateKey_bio(pBIO, pRSA);// 功能与i2d_RSAPrivateKey_bio_fp相同
+	if (iRV != 1)
+	{
+		ZF_LOGE("priKey.der error");
+		goto free_all;
+	}
+
+free_all:
+	BIO_free(pBIO);
+	return 0;
+}
+
+
+int toFormatPriPwdFile(EVP_PKEY *pEVPKey,char *pfxPwd)
+{
+	BIO             *pBIO = NULL;
+	int             iRV = 0, nLen = 0;
+
+	/* PEM编码 私钥文件*/
+	pBIO = BIO_new_file("priKey_pwd.pem", "w");
+	if (!pBIO)
+	{
+		ZF_LOGE("priKey_pwd.pem pBIO error");
+		goto free_all;
+	}
+	iRV = PEM_write_bio_PKCS8PrivateKey(pBIO, pEVPKey, EVP_des_ede3_cbc(), NULL, 0, 0, pfxPwd);
+	if (iRV != 1) {
+		ZF_LOGE("pri pwd error");
+		goto free_all;
+	}
+	/* DER编码 带密码 私钥文件*/
+	pBIO = BIO_new_file("priKey_pwd.der", "w");
+	if (!pBIO)
+	{
+		ZF_LOGE("priKey_pwd.der pBIO error");
+		goto free_all;
+	}
+
+	iRV = i2d_PKCS8PrivateKey_bio(pBIO, pEVPKey, EVP_des_ede3_cbc(), NULL, 0, 0, pfxPwd);// 功能与i2d_PKCS8PrivateKey_bio_fp相同
+	if (iRV != 1)
+	{
+		ZF_LOGE("priKey_pwd.der error");
+		goto free_all;
+	}
+free_all:
+	BIO_free(pBIO);
+	return 0;
+}
+
+
+
 //int genCsrPemFile(X509_REQ  *pX509Req, unsigned char * csr, int * csrLen)
 //{
 //	BIO             *pBIO = NULL;

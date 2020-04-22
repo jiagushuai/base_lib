@@ -19,6 +19,7 @@ extern "C" {
  */
 __export int    add(int a, int b);
 __export int	genRsaCsr(const char * DN, char * csr, int *csrLen);
+__export int	genRsaKey(char * priKey, char * priPwd, char * pubKey);
 
 #ifdef __cplusplus
 }

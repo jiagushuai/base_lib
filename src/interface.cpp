@@ -16,3 +16,7 @@ int genRsaCsr(const char * DN, char * csr, int *csrLen)
 {
 	return rsa.genRsaCsr(DN, csr, csrLen);
 }
+int genRsaKey(char * priKey, char * priPwd, char * pubKey)
+{
+	return rsa.genRsaKey(priKey, priPwd, pubKey);
+}

@@ -7,6 +7,7 @@ public:
 
 	// 生成密钥对及证书请求
 	int genRsaCsr(const char * DN,char * csr, int *csrLen);
+	int genRsaKey(char * priKey, char * priPwd, char * pubKey);
 	
 
 };

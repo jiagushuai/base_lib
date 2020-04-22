@@ -119,3 +119,33 @@ free_all:
 	return 0;
 }
 
+int rsaLib::genRsaKey(char * priKey, char * priPwd, char * pubKey)
+{
+	int             iRV = 0;
+	EVP_PKEY        *pEVPKey = NULL;
+	RSA             *pRSA = NULL;
+	int             bits = 2048;
+	unsigned long   E = RSA_F4;
+	pRSA = RSA_generate_key(bits, E, NULL, NULL);
+	pEVPKey = EVP_PKEY_new();
+	//将RSA对象赋给EVP_PKEY对象
+	EVP_PKEY_assign_RSA(pEVPKey, pRSA);
+	///*无密码 字符串 DER/PEM编码 私钥*/
+	toFormatPri(pRSA, priKey);
+	///*带密码 字符串 DER/PEM编码 私钥*/
+	toFormatPriPwd(pEVPKey, priKey, priPwd);
+
+	/*生成文件 PEM/DER编码 无密码 私钥*/
+	toFormatPriFile(pRSA);
+	/*生成文件 PEM/DER编码 带密码 私钥*/
+	toFormatPriPwdFile(pEVPKey,priPwd);
+
+	///*字符串 DER/PEM编码 公钥*/
+	toFormatPub(pRSA, pubKey);
+	///*生成文件 DER/PEM编码 公钥*/
+	toFormatPubFile(pRSA);
+
+free_all:;
+	RSA_free(pRSA);
+	return 0;
+}
