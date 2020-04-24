@@ -9,6 +9,7 @@ C++总结，包括笔者常使用的各个方法及接口
     └─transcode    	gbk与utf8转码的示例	
 ├─vs2015                vs2015的项目工程文件
 ├─java_dll              dll打包为jar包供java调用
+├─ca_openssl            openssl命令行实现自建ca流程
 ├─README.md             说明文件
 └─xmake.lua             xmake.lua配置文件
 ```
@@ -24,8 +25,6 @@ C++总结，包括笔者常使用的各个方法及接口
 ```
 ## TODO 
 + openssl相关API实现CA认证流程
-+ openssl相关命令行实现CA认证流程
-
 
 ## xmake相关
 + 安装等可查阅xmake[中文官网](https://xmake.io/#/zh-cn/)
