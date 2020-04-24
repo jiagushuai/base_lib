@@ -3,14 +3,14 @@ C++总结，包括笔者常使用的各个方法及接口
 
 ```
 ├─.gitignore		设置相应的忽略规则，来忽略这些文件的提
-├─src				简单示例程序交
-    ├─base64       base64编码解码的示例
-    ├─log          打印日志的示例 跨平台包括Windows及Mac
-    └─transcode    gbk与utf8转码的示例	
-├─vs2015			vs2015的项目工程文件
-├─java_dll			dll打包为jar包供java调用
-├─README.md			说明文件
-└─xmake.lua			xmake.lua配置文件
+├─sr                    简单示例程序
+    ├─base64       	base64编码解码的示例
+    ├─log          	打印日志的示例 跨平台包括Windows及Mac
+    └─transcode    	gbk与utf8转码的示例	
+├─vs2015                vs2015的项目工程文件
+├─java_dll              dll打包为jar包供java调用
+├─README.md             说明文件
+└─xmake.lua             xmake.lua配置文件
 ```
 
 + 直接打开vs2015/vs2015.sln文件即可编译工程
