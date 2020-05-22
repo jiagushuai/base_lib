@@ -3,13 +3,14 @@ C++总结，包括笔者常使用的各个方法及接口
 
 ```
 ├─.gitignore		设置相应的忽略规则，来忽略这些文件的提
-├─sr                    简单示例程序
-    ├─base64       	base64编码解码的示例
+├─src                    简单示例程序
+    ├─base64       	base64编码解码的示例 跨平台包括Windows及Mac
     ├─log          	打印日志的示例 跨平台包括Windows及Mac
-    └─transcode    	gbk与utf8转码的示例	
+    └─transcode    	gbk与utf8转码的示例 跨平台包括Windows及Mac
 ├─vs2015                vs2015的项目工程文件
 ├─java_dll              dll打包为jar包供java调用
 ├─ca_openssl            openssl命令行实现自建ca流程
+├─C#                    C#工程调用C++的动态链接库dll
 ├─README.md             说明文件
 └─xmake.lua             xmake.lua配置文件
 ```
